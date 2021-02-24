@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://raw.githack.com/Spiderpig86/Cirrus/master/dist/cirrus.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+        <meta charset="utf-8">
+        <title>QuickSwap</title>
+    </head>
+    <body>
+        <style>
+            body {
+                background: #2f2f2f;
+                background-size: cover;
+                background-repeat: no-repeat;
+                backdrop-filter: blur(5px);
+            }
+            .intro-card {
+                background-color: rgba(255, 255, 255, 0.9);
+                max-width: 80%;
+                min-width: 350px
+            }
+            .logo {
+                width: 150px
+            }
+        </style>
+<div class="u-flex u-center h-100">
+    <div class="intro-card frame px-3 py-4">
+        <div class="frame__body">
+        {% block content %}
+        {% endblock content %}
+        </div>
+    </div>
+</div>
+    </body>
+</html>
+
