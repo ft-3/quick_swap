@@ -1,5 +1,7 @@
+use actix_files::Files;
 use actix_web::{error, middleware, get, Error, App, web, HttpRequest, HttpResponse, HttpServer, Responder};
 use tera::Tera;
+use env_logger;
 
 #[get("/")]
 async fn index(tmpl: web::Data<tera::Tera>) -> Result<HttpResponse, Error> {
@@ -17,8 +19,8 @@ async fn swap(req: HttpRequest) -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    std::env::set_var("RUST_LOG", "actix_web=info");
-    //env_logger::init();
+    std::env::set_var("RUST_LOG", "actix_web=debug");
+    env_logger::init();
 
     HttpServer::new(|| {
         let tera =
@@ -28,6 +30,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(middleware::Logger::default()) // enable logger
             .service(index)
             .service(swap)
+            .service(Files::new("/static", "static"))
     })
     .bind("0.0.0.0:8080")?
     .run()
